@@ -4,8 +4,6 @@ var PluginReload = {
       
     if ('WebSocket' in window && window.WebSocket.CLOSING === 2) {
       
-      var contentSyncCopy = "Auto-reload";
-      
       wsc = new WebSocket("ws://"+host+":8001/autoreload");
       
       // when trying to open a connection to WebSocket update the pattern lab nav bar
