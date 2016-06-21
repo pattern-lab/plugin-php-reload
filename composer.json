@@ -26,7 +26,8 @@
   "require": {
     "php":              ">=5.4",
     "pattern-lab/core": "dev-dev",
-    "wrench/wrench":    "^2.0.0"
+    "wrench/wrench":    "^2.0.0",
+    "cocur/background-process": "~0.5"
   },
   "extra": {
     "patternlab": {

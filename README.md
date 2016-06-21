@@ -3,7 +3,7 @@
 
 # Reload Plugin for Pattern Lab
 
-The Reload Plugin adds Web Socket-based automatic browser reload support to Pattern Lab. The Reload Plugin will automatically reload your browser window if you're using the `--watch` flag.
+The Reload Plugin adds Web Socket-based automatic browser reload support to Pattern Lab. The Reload Plugin will automatically reload the Pattern Lab iFrame if you're using the `--watch` flag.
 
 ## Installation
 

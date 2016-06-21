@@ -12,14 +12,12 @@
 
 namespace PatternLab\Reload;
 
+use \Cocur\BackgroundProcess\BackgroundProcess;
 use \PatternLab\Config;
 use \PatternLab\Console;
 use \PatternLab\Data;
 
 class PatternLabListener extends \PatternLab\Listener {
-  
-  protected $faker;
-  protected $locale;
   
   /**
   * Add the listeners for this plug-in
@@ -37,8 +35,10 @@ class PatternLabListener extends \PatternLab\Listener {
   public function initServer() {
     
     if ((bool)Config::getOption("reload.on")) {
-      $path = __DIR__."AutoReloadServer.php";
-      $fp   = popen("php ".$path, "r");
+      $php     = isset($_SERVER["_"]) ? $_SERVER["_"] : Config::getOption("phpBin");
+      $path    = __DIR__."/AutoReloadServer.php";
+      $process = new BackgroundProcess($php." ".$path);
+      $process->run();
     }
     
   }
