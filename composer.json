@@ -1,7 +1,7 @@
 {
   "name":             "pattern-lab/plugin-reload",
   "description":      "Automatic Browser Reload Support for Pattern Lab",
-  "keywords":         ["faker", "pattern lab"],
+  "keywords":         ["autoreload", "pattern lab"],
   "homepage":         "http://patternlab.io",
   "license":          "MIT",
   "type":             "patternlab-plugin",
@@ -14,9 +14,9 @@
     }
   ],
   "support": {
-    "issues":         "https://github.com/pattern-lab/plugin-php-faker/issues",
+    "issues":         "https://github.com/pattern-lab/plugin-php-reload/issues",
     "wiki":           "http://patternlab.io/docs/",
-    "source":         "https://github.com/pattern-lab/plugin-php-faker/releases"
+    "source":         "https://github.com/pattern-lab/plugin-php-reload/releases"
   },
   "autoload": {
     "psr-0": {
