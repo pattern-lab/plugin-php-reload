@@ -34,7 +34,7 @@ class PatternLabListener extends \PatternLab\Listener {
   */
   public function addProcess(ProcessSpawnerEvent $event) {
     
-    if ((bool)Config::getOption("reload.on")) {
+    if ((bool)Config::getOption("plugins.reload.enabled")) {
       
       // only run this command if watch is going to be used
       if (Console::findCommand("w|watch") || Console::findCommandOption("with-watch")) {
