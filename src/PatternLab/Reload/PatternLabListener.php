@@ -12,9 +12,9 @@
 
 namespace PatternLab\Reload;
 
-use \Cocur\BackgroundProcess\BackgroundProcess;
 use \PatternLab\Config;
 use \PatternLab\Console;
+use \PatternLab\Console\ProcessSpawnerEvent;
 use \PatternLab\Data;
 
 class PatternLabListener extends \PatternLab\Listener {
@@ -25,20 +25,32 @@ class PatternLabListener extends \PatternLab\Listener {
   public function __construct() {
     
     // add listener
-    $this->addListener("watcher.start","initServer");
+    $this->addListener("processSpawner.getPluginProcesses","addProcess");
     
   }
   
   /**
-  * Initialize the web socket server
+  * Add command to initialize the websocket server
   */
-  public function initServer() {
+  public function addProcess(ProcessSpawnerEvent $event) {
     
-    if ((bool)Config::getOption("reload.on")) {
-      $php     = isset($_SERVER["_"]) ? $_SERVER["_"] : Config::getOption("phpBin");
-      $path    = __DIR__."/AutoReloadServer.php";
-      $process = new BackgroundProcess($php." ".$path);
-      $process->run();
+    if ((bool)Config::getOption("plugins.reload.enabled")) {
+      
+      // only run this command if watch is going to be used
+      if (Console::findCommand("w|watch") || Console::findCommandOption("with-watch")) {
+        
+        // set-up the command
+        $pathPHP      = Console::getPathPHP();
+        $pathReload   = __DIR__."/AutoReloadServer.php";
+        $command      = "exec ".$pathPHP." ".$pathReload;
+        
+        // send the processes on their way
+        $processes     = array();
+        $processes[]   = array("command" => $command, "timeout" => null, "idle" => 600, "output" => false);
+        $event->addPluginProcesses($processes);
+        
+      }
+      
     }
     
   }
