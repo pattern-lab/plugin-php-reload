@@ -26,7 +26,7 @@
   "require": {
     "php":              ">=5.4",
     "pattern-lab/core": "^2.4.0",
-    "wrench/wrench":    "^2.0.0",
+    "wrench/wrench":    "^2.0.0"
   },
   "extra": {
     "patternlab": {
