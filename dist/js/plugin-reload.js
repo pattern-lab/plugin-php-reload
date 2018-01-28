@@ -20,7 +20,7 @@ var PluginReload = {
       wsc.onmessage = function () {
         var targetOrigin = (window.location.protocol === 'file:') ? '*' : window.location.protocol+'//'+window.location.host;
         var obj = JSON.stringify({"event": "patternLab.reload"});
-        document.getElementById('sg-viewport').contentWindow.postMessage(obj, targetOrigin);
+        document.getElementsByClassName('pl-c-viewport__iframe')[0].contentWindow.postMessage(obj, targetOrigin);
       };
       
       // when there's an error update the pattern lab nav bar
